@@ -76,3 +76,29 @@ public ResponseEntity<Object> createUser(@RequestBody User user) {
     return ResponseEntity.created(location).build();
 }
 ```
+
+- REST API에서 유효성 검증
+  - 함수 인자 앞에 `@Valid`를 추가하고
+  - 아래와 같이 유효성 조건을 추가할 수 있다.
+```java
+@PostMapping("/users")
+public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
+    User savedUser = service.save(user);
+
+    // post하고 response location부분에 저장한 user 보여주기
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(savedUser.getId())
+            .toUri();
+
+    return ResponseEntity.created(location).build();
+}
+```
+```java
+public class User {
+    private Integer id;
+
+    @Size(min = 2, message = "Name should have at least 2 characters.")
+    private String name;
+    ...
+```
