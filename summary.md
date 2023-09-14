@@ -102,3 +102,21 @@ public class User {
     private String name;
     ...
 ```
+
+### REST API documentation
+- 사용자들이 잘 이해할 수 있는 doc이 필요하다.
+- 어려운 점
+  - code와의 싱크
+  - 다양한 rest api 문서간의 일관성
+- 아래 라이브러리를 통해서 swagger ui를 제공받을 수 있다.
+```xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
+- application을 실행하면
+  - http://localhost:8080/swagger-ui/index.html 에서 swagger ui 제공된다.
+  - http://localhost:8080/v3/api-docs 에서는 openapi specification을 제공한다.
+    - REST API 사양 설명
