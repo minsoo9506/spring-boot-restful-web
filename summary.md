@@ -120,3 +120,13 @@ public class User {
   - http://localhost:8080/swagger-ui/index.html 에서 swagger ui 제공된다.
   - http://localhost:8080/v3/api-docs 에서는 openapi specification을 제공한다.
     - REST API 사양 설명
+
+### Content Negotiation
+- 동일한 resource여도 사용자는 다른 형태의 결과값을 원할 수도 있다. 예를 들어, json이 아닌 XML형태!
+- springboot에서는 아래 라이브러리는 추가해서 XML응답을 할 수 있다.
+```java
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+```
