@@ -130,3 +130,11 @@ public class User {
     <artifactId>jackson-dataformat-xml</artifactId>
 </dependency>
 ```
+
+### internationalization - i18n
+- rest api 국제화
+- 주로 HTTP Request Header로 'Accept-Language'을 사용
+    - Accept-Language에서 언어 선택 가능
+    - 요청 받은 언어를 바탕으로 응답
+    - 예) en(English)이면 Good Morning으로 응답
+    - `HelloWorldController`에 예시 구현
