@@ -138,3 +138,49 @@ public class User {
     - 요청 받은 언어를 바탕으로 응답
     - 예) en(English)이면 Good Morning으로 응답
     - `HelloWorldController`에 예시 구현
+
+### Versioning REST API
+- rest api에서 기능이 크게 바뀌는 경우 사용자들을 위해 함부로 바꿀 수 없다.
+- 그래서 아래의 방법들로 versioning을 하는 것이다.
+  - URL기반으로 versioning
+  - Request parameter
+  - Header
+  - Media type
+- URL기반 예시
+```java
+@RestController
+public class VersioningPersonController {
+    
+  @GetMapping("/v1/person")
+  public PersonV1 getFirstVersionOfPerson () {
+    return new PersonV1("Kim MinJae");
+  }
+
+  @GetMapping("/v2/person")
+  public PersonV2 getSecondVersionOfPerson () {
+    return new PersonV2(new Name("Kim", "MinJae"));
+  }
+}
+```
+- Request parameter 예시
+```java
+@RestController
+public class VersioningPersonController {
+    
+    @GetMapping(path = "/person", params = "version=1")
+    public PersonV1 getFirstVersionOfPersonRequestParameter () {
+        return new PersonV1("Kim MinJae");
+    }
+}
+```
+- Accept-Header 예시
+```java
+@RestController
+public class VersioningPersonController {
+
+    @GetMapping(path = "/person/header", produces = "application/vnd.company.app-v1+json")
+    public PersonV1 getFirstVersionOfPersonAcceptHeader () {
+        return new PersonV1("Kim MinJae");
+    }
+}
+```
