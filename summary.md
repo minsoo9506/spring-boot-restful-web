@@ -184,3 +184,38 @@ public class VersioningPersonController {
     }
 }
 ```
+
+### HATEOAS
+- hypermedia as the engine of application state
+- rest api 사용자들에게 action을 알려주는 것
+- 이번에는 HAL이라는 api 리소스간의 hyperlink를 전달하는 포맷을 이용한다.
+  - `_links:{}`
+- 이번 commit 코드를 통해서 아래처럼 모든 유저를 보고 싶은 경우, 아래처럼 정보를 전달 할 수 있다.
+```json
+{
+  "id": 1,
+  "name": "A",
+  "birthdate": "1993-09-21",
+  "_links": {
+    "all-users": {
+      "href": "http://localhost:8080/users"
+    }
+  }
+}
+```
+- 코드
+```java
+@GetMapping("/users/{id}")
+public EntityModel<User> retrieveUser(@PathVariable int id) {
+    User user = service.findOne(id);
+
+    if (user == null)
+        throw new UserNotFoundException("id:" + id);
+
+    EntityModel<User> entityModel = EntityModel.of(user);
+    WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+    entityModel.add(link.withRel("all-users"));
+
+    return entityModel;
+}
+```
