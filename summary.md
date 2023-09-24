@@ -219,3 +219,12 @@ public EntityModel<User> retrieveUser(@PathVariable int id) {
     return entityModel;
 }
 ```
+
+### REST API 커스텀 - 정적 필터링
+- serialization: object를 json, xml같은 것으로 바꾸는 것
+  - 예를 들어, spring bean을 return 하여 그들의 property들이 json으로 전달
+- java에서 관련 라이브러리는 Jackson이고 이를 이용하여 REST API의 reponse를 커스텀할 수 있다.
+  - `@JSONProperty`로 field name 바꾸기
+  - 원하는 field만 보내기 (filtering)
+    - static: 모든 rest api에 적용 (`@JsonIgnore`, `@JsonIgnoreProperties`)
+    - dynamic: 특정 rest api에 적용
