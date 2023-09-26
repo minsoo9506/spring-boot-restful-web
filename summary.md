@@ -228,3 +228,18 @@ public EntityModel<User> retrieveUser(@PathVariable int id) {
   - 원하는 field만 보내기 (filtering)
     - static: 모든 rest api에 적용 (`@JsonIgnore`, `@JsonIgnoreProperties`)
     - dynamic: 특정 rest api에 적용
+
+### REST API 커스텀 - 동적 필터링
+- 먼저, Bean 클래스를 `@JsonFilter("DynamicFilter")`로 감싼다.
+- 그리고 아래와 같이 코드를 이용한다.
+```java
+@GetMapping("/filtering-dynamic")
+public MappingJacksonValue filteringDynamic() {
+    SomeBean someBean = new SomeBean("val1", "val2", "val3");
+    MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBean);
+    SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1"); // field1만 남음
+    FilterProvider filters = new SimpleFilterProvider().addFilter("DynamicFilter", filter);
+    mappingJacksonValue.setFilters(filters);
+    return mappingJacksonValue;
+}
+```

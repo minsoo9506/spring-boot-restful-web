@@ -1,9 +1,11 @@
 package rest.restfulwebservices.filtering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties("field1") // 이렇게 클래스 단위도 가능
+//@JsonIgnoreProperties("field1") // 이렇게 클래스 단위도 가능
+@JsonFilter("DynamicFilter")
 public class SomeBean {
     private String field1;
 
