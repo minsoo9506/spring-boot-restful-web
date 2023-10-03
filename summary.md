@@ -243,3 +243,10 @@ public MappingJacksonValue filteringDynamic() {
     return mappingJacksonValue;
 }
 ```
+
+### Spring Boot Actuator로 API 모니터링
+- 개발한 app을 monitor하고 manage하는 역할
+- 제공하는 endpoints
+  - beans, health, metrics, mappings 등
+- app을 실행하고 위에 해당하는 url에 들어가면 해당하는 정보들을 보여준다.
+- 더 많은 url은 `application.properties`에 `management.endpoints.web.exposure.include=*`를 추가한다.
