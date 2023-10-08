@@ -250,3 +250,10 @@ public MappingJacksonValue filteringDynamic() {
   - beans, health, metrics, mappings 등
 - app을 실행하고 위에 해당하는 url에 들어가면 해당하는 정보들을 보여준다.
 - 더 많은 url은 `application.properties`에 `management.endpoints.web.exposure.include=*`를 추가한다.
+
+### Spring Boot HAL Explorer로 API탐색
+- HAL
+  - API 리소스에서 hyperlink를 표현하는 format
+- HAL Explorer
+  - HAL format의 hyperlink 탐색기
+- 필요한 라이브러리를 pox.xml에 추가하고 app을 실행하면 swagger같이 탐색할 수 있는 창을 볼 수 있다. 
