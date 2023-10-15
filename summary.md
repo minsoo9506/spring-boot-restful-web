@@ -256,4 +256,11 @@ public MappingJacksonValue filteringDynamic() {
   - API 리소스에서 hyperlink를 표현하는 format
 - HAL Explorer
   - HAL format의 hyperlink 탐색기
-- 필요한 라이브러리를 pox.xml에 추가하고 app을 실행하면 swagger같이 탐색할 수 있는 창을 볼 수 있다. 
+- 필요한 라이브러리를 pox.xml에 추가하고 app을 실행하면 swagger같이 탐색할 수 있는 창을 볼 수 있다.
+
+### JPA, Hibernate를 이용해 H2 연결
+- 일반적으로 개발할 때 바로 DB를 연결하기보다는 H2를 이용합니다.
+- UserRepository 파일을 만듭니다. (interface)
+  - `public interface UserRepository extends JpaRepository<User, Integer> {}`
+- UserJpaResource파일에서 이를 이용합니다.
+  - jpa를 이용하여 Controller를 통해 H2 DB와 연결
