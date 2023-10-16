@@ -264,3 +264,17 @@ public MappingJacksonValue filteringDynamic() {
   - `public interface UserRepository extends JpaRepository<User, Integer> {}`
 - UserJpaResource파일에서 이를 이용합니다.
   - jpa를 이용하여 Controller를 통해 H2 DB와 연결
+
+### User Entity와 일대다 관계로 Post Entity 생성
+- 유저가 여러개의 post를 작성할 수 있기 때문에 일대다의 관계이다.
+```java
+// post entity
+@ManyToOne(fetch = FetchType.LAZY)
+@JsonIgnore
+private User user;
+
+// user entity 
+@OneToMany(mappedBy = "user")
+@JsonIgnore
+private List<Post> posts;
+```
