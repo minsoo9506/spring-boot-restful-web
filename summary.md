@@ -278,3 +278,6 @@ private User user;
 @JsonIgnore
 private List<Post> posts;
 ```
+
+### 사용자와 게시물 GET, POST API 구현
+- PostRepository만들어주고 get, post mapping 함수들 구현하면 된다.
